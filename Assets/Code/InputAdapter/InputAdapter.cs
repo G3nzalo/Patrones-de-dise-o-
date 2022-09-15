@@ -5,4 +5,5 @@ using UnityEngine;
 public interface InputAdapter 
 {
     Vector2 GetDirection();
+    bool IsFireActionPressed();
 }
