@@ -5,20 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Factory/EnemyFactoryConfig", fileName = "EnemyFactoryConfig", order = 0)]
 public class FactoryConfiguration : ScriptableObject
 {
-    [SerializeField] Bullet[] _bulletsPrefabs;
+    [SerializeField] Projectile[] _bulletsPrefabs;
 
-    Dictionary<string, Bullet> _bulletsConfiguration;
+    Dictionary<string, Projectile> _bulletsConfiguration;
 
     private void Awake()
     {
-        _bulletsConfiguration = new Dictionary<string, Bullet>();
+        _bulletsConfiguration = new Dictionary<string, Projectile>();
 
         foreach (var item in _bulletsPrefabs)
         {
             _bulletsConfiguration.Add(item.Id, item);
         }
     }
-    public Bullet GetBulletId(string id)
+    public Projectile GetBulletId(string id)
     {
         if (_bulletsConfiguration.TryGetValue(id, out var bullet))
         {

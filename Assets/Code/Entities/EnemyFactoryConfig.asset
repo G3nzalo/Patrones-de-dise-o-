@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: EnemyFactoryConfig
   m_EditorClassIdentifier: 
   _bulletsPrefabs:
-  - {fileID: 5427519225403385365, guid: 471fb32f46e2044f78dd20d3e44f3156, type: 3}
-  - {fileID: 6764502384310051310, guid: fa291f0cf473346549b73cd3c5dda946, type: 3}
+  - {fileID: 3978746735476083399, guid: 471fb32f46e2044f78dd20d3e44f3156, type: 3}
+  - {fileID: 5094936535060861559, guid: fa291f0cf473346549b73cd3c5dda946, type: 3}
+  - {fileID: 3583400472058190255, guid: 1962ddbcc4df942969b12ab82f71afb6, type: 3}

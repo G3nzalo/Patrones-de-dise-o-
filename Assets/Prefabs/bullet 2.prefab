@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 707241005708547573}
   - component: {fileID: 707241005708547572}
   - component: {fileID: 707241005708547575}
-  - component: {fileID: 6764502384310051310}
+  - component: {fileID: 5094936535060861559}
   m_Layer: 0
   m_Name: bullet 2
   m_TagString: Untagged
@@ -107,7 +107,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &6764502384310051310
+--- !u!114 &5094936535060861559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,10 +116,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 707241005708547569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8da4e9c60d6fa415daf6a6a8a5d4756b, type: 3}
+  m_Script: {fileID: 11500000, guid: 233a3032c92b8430e9c2f0720545db32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _id: {fileID: 11400000, guid: 857ea3d7ed3a54133a06389fc6553649, type: 2}
   _rb: {fileID: 707241005708547575}
-  _speed: 23
-  _seconds: 1
+  _speed: 10
+  _seconds: 3
+  _amplitude: 2
+  _currentTime: 3
+  _frequency: 20

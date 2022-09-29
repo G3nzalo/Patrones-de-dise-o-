@@ -1,3 +1,3 @@
-﻿public class BulletGreen : Bullet
+﻿public class BulletGreen : Projectile
 {
 }

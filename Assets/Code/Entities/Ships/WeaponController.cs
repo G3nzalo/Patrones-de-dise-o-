@@ -5,6 +5,8 @@ public class WeaponController :MonoBehaviour
 {
     [SerializeField] BulletConfiguration _bullet1IdConfiguration;
     [SerializeField] BulletConfiguration _bullet2IdConfiguration;
+    [SerializeField] BulletConfiguration _bullet3IdConfiguration;
+
     [SerializeField] FactoryConfiguration _factoryBuletsConfiguration;
     [SerializeField] Transform _bulletSpawnTransform;
 
@@ -50,6 +52,11 @@ public class WeaponController :MonoBehaviour
         if (Input.GetKey(KeyCode.Q))
         {
             _mFactory.Create(_bullet2IdConfiguration.Value, _bulletSpawnTransform.position, _bulletSpawnTransform.rotation);
+        }
+
+        if (Input.GetKey(KeyCode.F))
+        {
+            _mFactory.Create(_bullet3IdConfiguration.Value, _bulletSpawnTransform.position, _bulletSpawnTransform.rotation);
         }
     }
 }

@@ -603,6 +603,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 857ea3d7ed3a54133a06389fc6553649, type: 2}
     - target: {fileID: 5333283497987421397, guid: d954bbbe2b13b4940aeba74b98739cf4, type: 3}
+      propertyPath: _bullet3IdConfiguration
+      value: 
+      objectReference: {fileID: 11400000, guid: adadf524248ab42c8bfc9310972ca1fe, type: 2}
+    - target: {fileID: 5333283497987421397, guid: d954bbbe2b13b4940aeba74b98739cf4, type: 3}
       propertyPath: _bulletPrefab.Array.size
       value: 2
       objectReference: {fileID: 0}
