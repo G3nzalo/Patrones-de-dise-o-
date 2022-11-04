@@ -1,34 +1,38 @@
-﻿using UnityEngine;
+﻿using Code.Entities.Ships;
+using UnityEngine;
 
-internal class AIInputAdapter : InputAdapter
+namespace Code.Inputs
 {
-    private readonly ShipMediator _ship;
-    private int _currentDirectionX;
-
-    public AIInputAdapter(ShipMediator ship)
+    internal class AIInputAdapter : IInputAdapter
     {
-        _ship = ship;
-        _currentDirectionX = 1;
-    }
+        private readonly ShipMediator _ship;
+        private float _currentDirectionX;
 
-    public Vector2 GetDirection()
-    {
-        var viewportPoint = Camera.main.WorldToViewportPoint(_ship.transform.position);
-        if (viewportPoint.x < 0.05f)
+        public AIInputAdapter(ShipMediator ship)
         {
+            _ship = ship;
             _currentDirectionX = 1;
         }
-        else if (viewportPoint.x > 0.95f)
+
+        public Vector2 GetDirection()
         {
-            _currentDirectionX = -1;
+            var viewportPoint = Camera.main.WorldToViewportPoint(_ship.transform.position);
+            if (viewportPoint.x < 0.05f)
+            {
+                _currentDirectionX = -_ship.transform.right.x;
+            }
+            else if (viewportPoint.x > 0.95f)
+            {
+                _currentDirectionX = _ship.transform.right.x;
+            }
+
+            return new Vector2(_currentDirectionX, -1);
         }
 
-        return new Vector2(_currentDirectionX, 0);
-    }
 
-
-    public bool IsFireActionPressed()
-    {
-        return Random.Range(0, 100) < 20;
+        public bool IsFireActionPressed()
+        {
+            return Random.Range(0, 100) < 20;
+        }
     }
 }

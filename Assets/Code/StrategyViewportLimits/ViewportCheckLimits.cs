@@ -1,21 +1,22 @@
 ﻿using UnityEngine;
 
-public class ViewportCheckLimits : ICheckLimits
+namespace Code.Viewport
 {
-    private readonly Camera _camera;
-    private readonly Transform _transform;
-
-    public ViewportCheckLimits(Camera camera , Transform transform)
+    public class ViewportCheckLimits : ICheckLimits
     {
-        _camera = camera;
-        _transform = transform;
-    }
+        private readonly Camera _camera;
 
-    public void ClampFinalPosition()
-    {
-        var viewportPoint = _camera.WorldToViewportPoint(_transform.position);
-        viewportPoint.x = Mathf.Clamp(viewportPoint.x, 0.03f, 0.97f);
-        viewportPoint.y = Mathf.Clamp(viewportPoint.y, 0.03f, 0.97f);
-        _transform.position = _camera.ViewportToWorldPoint(viewportPoint);
+        public ViewportCheckLimits(Camera camera, Transform transform)
+        {
+            _camera = camera;
+        }
+
+        public Vector2 ClampFinalPosition(Vector2 currentPosition)
+        {
+            var viewportPoint = _camera.WorldToViewportPoint(currentPosition);
+            viewportPoint.x = Mathf.Clamp(viewportPoint.x, 0.03f, 0.97f);
+            viewportPoint.y = Mathf.Clamp(viewportPoint.y, 0.03f, 0.97f);
+           return _camera.ViewportToWorldPoint(viewportPoint);
+        }
     }
 }

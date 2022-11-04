@@ -1,37 +1,87 @@
-﻿using System;
+﻿using Code.Entities.Ships.Configurations;
+using Code.Entities.Ships.Controllers;
+using Code.Inputs;
 using UnityEngine;
+using Code.Entities.Ships.Common;
 
-[RequireComponent(typeof(MovementController))]
-[RequireComponent(typeof(WeaponController))]
-public class ShipMediator : MonoBehaviour , IShip
+namespace Code.Entities.Ships
 {
-
-    [SerializeField] MovementController _movementController;
-    [SerializeField] WeaponController _weaponController;
-
-    private InputAdapter _input;
-
-    public void Configure(InputAdapter adapter, ICheckLimits strategySimits)
+    [RequireComponent(typeof(MovementController))]
+    [RequireComponent(typeof(WeaponController))]
+    public class ShipMediator : MonoBehaviour, IShip
     {
-        _input = adapter;
-        _movementController.Configure(this, strategySimits);
-        _weaponController.Configure(this);
-    }
+        [SerializeField] private MovementController _movementController;
+        [SerializeField] private WeaponController _weaponController;
+        [SerializeField] private HealthController _healthController;
+        
+
+        [SerializeField] ShipId _shipConfig;
+        private IInputAdapter _input;
+        private Vector2 _dir;
+        private TEAMS _team;
+        private int _score;
 
 
-    private void Update()
-    {
-        var dir = _input.GetDirection();
-        _movementController.Move(dir);
-        TryShoot();
-    }
+        public string Id => _shipConfig.Value;
 
-    private void TryShoot()
-    {
-        if(_input.IsFireActionPressed())
+
+        public void Configure(ShipConfiguration configuration)
         {
-            _weaponController.TryShoot();
-        }
-    }
+            _input = configuration.Input;
+            _movementController.Configure(this, configuration.CheckLimits, configuration.Speed);
+            _weaponController.Configure(this, configuration.FireRate, configuration.DefaultProjectileId , configuration.Team);
+            _healthController.Configure(this , configuration.Health , configuration.Team);
+            _team = configuration.Team;
+            _score = configuration.Score;
 
+        }
+
+
+        private void FixedUpdate()
+        {
+            _movementController.Move(_dir);
+        }
+        private void Update()
+        {
+            _dir = _input.GetDirection();
+            TryShoot();
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+           var damageable =  collision.GetComponent<IDamageable>();
+
+            if(damageable.Team == _team)
+            {
+                return;
+            }
+
+            damageable.ApplyDamage(1);
+
+            Debug.Log("Nave colisiono con: " + collision.name);
+        }
+
+        public void OnDamageReceived(bool isDead)
+        {
+            if (!isDead)
+            {
+                return;
+            }
+
+            var scoreView = FindObjectOfType<ScoreView>();
+            scoreView.AddScore(_team, _score);
+            Destroy(gameObject);
+        }
+
+
+        private void TryShoot()
+        {
+            if (_input.IsFireActionPressed())
+            {
+                _weaponController.TryShoot();
+            }
+        }
+
+
+    }
 }

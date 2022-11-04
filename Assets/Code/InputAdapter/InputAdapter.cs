@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface InputAdapter 
+namespace Code.Inputs
 {
-    Vector2 GetDirection();
-    bool IsFireActionPressed();
+    public interface IInputAdapter
+    {
+        Vector2 GetDirection();
+        bool IsFireActionPressed();
+    }
 }

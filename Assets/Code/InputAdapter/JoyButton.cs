@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class JoyButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+namespace Code.Inputs
 {
+    public class JoyButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+    {
         public bool IsPressed { get; private set; }
         public bool IsEnter { get; private set; }
 
@@ -26,5 +28,5 @@ public class JoyButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, 
         {
             IsEnter = false;
         }
+    }
 }
-

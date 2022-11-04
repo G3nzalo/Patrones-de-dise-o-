@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 
-public class InputDesktop : InputAdapter
+namespace Code.Inputs
 {
-    public Vector2 GetDirection()
+    public class InputDesktop : IInputAdapter
     {
-        return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-    }
+        public Vector2 GetDirection()
+        {
+            return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        }
 
-    public bool IsFireActionPressed()
-    {
-        return Input.GetButton("Fire");
+        public bool IsFireActionPressed()
+        {
+            return Input.GetButton("Fire");
+        }
     }
 }

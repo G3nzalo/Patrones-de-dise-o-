@@ -1,4 +1,9 @@
-﻿public interface ICheckLimits
+﻿using UnityEngine;
+
+namespace Code.Viewport
 {
-    void ClampFinalPosition();
+    public interface ICheckLimits
+    {
+        Vector2 ClampFinalPosition(Vector2 currentPosition);
+    }
 }
